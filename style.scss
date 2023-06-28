@@ -1,0 +1,175 @@
+$primary-color: #5e63ba;
+$background-color: #ddf2ff;
+$error-color: #f00000;
+$dark-color: #333;
+$popup-background: rgba(0, 0, 0, 0.6);
+$popup-content-background: #fff;
+$popup-button-background: #333;
+$popup-button-hover-background: #555;
+
+@mixin box-styles($padding, $border-radius, $border) {
+  padding: $padding;
+  border-radius: $border-radius;
+  border: $border;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background: url("../images/background-img.jpg");
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: contain;
+  background-position: center;
+}
+
+.container {
+  max-width: 700px;
+  text-align: center;
+  background: #fff;
+  @include box-styles(30px, 10px, 1px solid #ccc);
+}
+
+.game-character {
+  width: 200px;
+  height: 278px;
+}
+
+.word-display {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 0 40px;
+}
+
+.word-display .letter {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 8px;
+  width: 30px;
+  cursor: text;
+  border-bottom: 3px solid $dark-color;
+}
+
+.word-display .letter.guessed {
+  margin-top: -35px;
+  border-bottom: 0;
+}
+
+.wrapper p {
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+.wrapper p span {
+  font-weight: 600;
+}
+
+.incorrect-guesses span {
+  color: $error-color;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 3px;
+  margin: 30px auto;
+}
+
+.keyboard button {
+  padding: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  text-transform: uppercase;
+  background: $primary-color;
+}
+
+.keyboard button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.keyboard button:not([disabled]):hover {
+  background: #8286c9;
+}
+
+.wrapper h4 {
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $popup-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s;
+}
+
+.popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup .content {
+  @include box-styles(30px, 10px, none);
+  background: $popup-content-background;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.popup img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.popup h4 {
+  font-size: 23px;
+}
+
+.popup p {
+  font-size: 17px;
+  margin: 20px 0 30px;
+  font-weight: 500;
+}
+
+.popup button {
+  padding: 10px 20px;
+  font-size: 17px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: $popup-button-background;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: $popup-button-hover-background;
+}
